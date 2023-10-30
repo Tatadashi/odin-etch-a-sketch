@@ -1,10 +1,7 @@
 body {
     margin: 0;
-    height: 100vh;
 }
 
 #gridContainer {
     display: flex;
-    flex-wrap: nowrap;
-    flex: 1;
 }
