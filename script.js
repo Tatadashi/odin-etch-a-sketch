@@ -3,9 +3,6 @@ function createGrid () {
     const squareDiv = document.createElement(`div`);
     squareDiv.style.cssText = `border: 1px solid; border-color: black; min-width: 10px; background-color: white; aspect-ratio: 1/1;`;
 
-
-    const screenSize = document.querySelector(`#ss`);
-
     //find the smaller viewport dimension in order to calculate maximum size of 1 square div in the grid
     let viewportHeight = window.innerHeight;
     let viewportWidth = window.innerWidth;
@@ -26,9 +23,8 @@ function createGrid () {
     const container = document.querySelector(`#gridContainer`);
     for (i = 0; i < 16; i++) {
         const col = document.createElement("div");
-        col.className = "row";
         
-        //max width makes it so that the 
+        //max width makes it so that the square div does not grow past viewport size
         col.style.cssText = `display: flex; flex-direction: column; flex: 1; max-width: ${smallerViewportDimension}px;`;
   
         for (j = 0; j < 16; j++) {
