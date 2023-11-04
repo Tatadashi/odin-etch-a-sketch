@@ -1,24 +1,45 @@
 function createGrid () {
     //create 1 square div
     const squareDiv = document.createElement(`div`);
-    squareDiv.style.cssText = `border: 2px solid; border-color: black; min-width: 15px; aspect-ratio: 1/1;`;
+    squareDiv.style.cssText = `border: 1px solid; border-color: black; min-width: 10px; background-color: white; aspect-ratio: 1/1;`;
 
-    //create 16 rows (horizontal) each containing a column (vertical) of 16 square divs, WIP grid can only shrink not grow 
+
+    const screenSize = document.querySelector(`#ss`);
+
+    //find the smaller viewport dimension in order to calculate maximum size of 1 square div in the grid
+    let viewportHeight = window.innerHeight;
+    let viewportWidth = window.innerWidth;
+    let smallerViewportDimension = viewportWidth > viewportHeight ? viewportHeight : viewportWidth;
+
+    const CONTAINER_PADDING_PIXELS = 20;
+    smallerViewportDimension -= CONTAINER_PADDING_PIXELS;
+
+    //get the biggest integer that a square div can be with the viewport
+    const NUMBER_OF_SQUARES_IN_ROW_OR_COLUMN = 16;
+    smallerViewportDimension = Math.floor(smallerViewportDimension / NUMBER_OF_SQUARES_IN_ROW_OR_COLUMN);
+
+    //prevent width from shrinking past the minimum width of a square div
+    const MINIMUM_LENGTH_OF_SQUARE_DIV = 10;
+    smallerViewportDimension = smallerViewportDimension < MINIMUM_LENGTH_OF_SQUARE_DIV ? MINIMUM_LENGTH_OF_SQUARE_DIV : smallerViewportDimension;
+
+    //create 16 columns (vertical) each containing a row (horizontal) of 16 square divs,
     const container = document.querySelector(`#gridContainer`);
     for (i = 0; i < 16; i++) {
-        const row = document.createElement("div");
-        row.className = "row";
-        row.style.cssText = `display: flex; flex: 1; flex-direction: column;`;
+        const col = document.createElement("div");
+        col.className = "row";
+        
+        //max width makes it so that the 
+        col.style.cssText = `display: flex; flex-direction: column; flex: 1; max-width: ${smallerViewportDimension}px;`;
   
         for (j = 0; j < 16; j++) {
-            const col = document.createElement("div");
-            const colSquare = squareDiv.cloneNode();
-            col.appendChild(colSquare);
-            row.appendChild(col);
+            const row = document.createElement("div");
+            const rowSquare = squareDiv.cloneNode();
+            row.appendChild(rowSquare);
+            col.appendChild(row);
         }
 
-        container.appendChild(row);
-    }    
+        container.appendChild(col);
+    }
 }
 
 createGrid();

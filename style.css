@@ -1,7 +1,15 @@
 body {
-    margin: 0;
+    margin: 0px;
+    background-color: peachpuff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #gridContainer {
     display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
