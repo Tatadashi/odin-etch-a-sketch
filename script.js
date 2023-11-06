@@ -4,8 +4,11 @@ function createGrid (squareCount = 16) {
     squareDiv.style.cssText = `border: 1px solid; border-color: black; min-width: 3px; background-color: white; aspect-ratio: 1/1;`;
     squareDiv.classList.add(`box`);
 
+    //have to later subtract button heihgt from vertical viewport because it affects space grid can fit in (width does not affect this)
+    const BUTTON_HEIGHT_AND_MARGIN = 30;
+
     //find the smaller viewport dimension in order to calculate maximum size of 1 square div in the grid
-    let viewportHeight = window.innerHeight;
+    let viewportHeight = window.innerHeight - BUTTON_HEIGHT_AND_MARGIN;
     let viewportWidth = window.innerWidth;
     let smallerViewportDimension = viewportWidth > viewportHeight ? viewportHeight : viewportWidth;
 
@@ -39,7 +42,7 @@ function createGrid (squareCount = 16) {
     }
 }
 
-createGrid(100);
+createGrid(20);
 
 //select all square divs and make it so they turn black when hovered on
 const squareDiv = document.querySelectorAll(`.box`);
