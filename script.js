@@ -2,6 +2,7 @@ function createGrid () {
     //create 1 square div
     const squareDiv = document.createElement(`div`);
     squareDiv.style.cssText = `border: 1px solid; border-color: black; min-width: 10px; background-color: white; aspect-ratio: 1/1;`;
+    squareDiv.classList.add(`box`);
 
     //find the smaller viewport dimension in order to calculate maximum size of 1 square div in the grid
     let viewportHeight = window.innerHeight;
@@ -39,3 +40,11 @@ function createGrid () {
 }
 
 createGrid();
+
+//select all square divs and make it so they turn black when hovered on
+const squareDiv = document.querySelectorAll(`.box`);
+squareDiv.forEach((box) => {
+    box.addEventListener(`mouseover`, () => {
+        box.style.backgroundColor = `black`;
+    });
+});
