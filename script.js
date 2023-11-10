@@ -55,7 +55,19 @@ function getRandomRGB() {
     return `rgb(${redValue}, ${greenValue}, ${blueValue})`;
 }
 
+//select all square divs and make it so they turn random color (rgb) when hovered on
+function changeColorOnHover() {
+    let squareDiv = document.querySelectorAll(`.box`);
+    squareDiv.forEach((box) => {
+        box.addEventListener(`mouseover`, () => {
+            let randomColor = getRandomRGB();
+            box.style.backgroundColor = randomColor;
+        });
+    });
+}
+
 createGrid()
+changeColorOnHover();
 
 const input = document.querySelector(`#inputButton`);
 input.addEventListener(`click`, () => {
@@ -70,13 +82,5 @@ input.addEventListener(`click`, () => {
     const container = document.querySelector(`#gridContainer`);
     container.replaceChildren();
     createGrid(squareCount);
-});
-
-//select all square divs and make it so they turn random color (rgb) when hovered on
-const squareDiv = document.querySelectorAll(`.box`);
-squareDiv.forEach((box) => {
-    box.addEventListener(`mouseover`, () => {
-        let randomColor = getRandomRGB();
-        box.style.backgroundColor = randomColor;
-    });
+    changeColorOnHover();
 });
