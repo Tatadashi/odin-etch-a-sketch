@@ -42,7 +42,22 @@ function createGrid (squareCount = 16) {
     }
 }
 
-createGrid(20);
+createGrid()
+
+const input = document.querySelector(`#inputButton`);
+input.addEventListener(`click`, () => {
+    let squareCount;
+
+    //last condition (regex) outputs a NOT boolean for [if squareCount only contains one or more digits (doesn't accept `.` since not a digit)]
+    while (squareCount < 1 || squareCount > 100 || !/^[0-9]+$/.test(squareCount)){
+        squareCount = prompt(`How many squares per side on grid? Input integer from 1 to 100, inclusive.`);
+    }
+
+    //delete old (or default) gird and create new one using user input  
+    const container = document.querySelector(`#gridContainer`);
+    container.replaceChildren();
+    createGrid(squareCount);
+});
 
 //select all square divs and make it so they turn black when hovered on
 const squareDiv = document.querySelectorAll(`.box`);
