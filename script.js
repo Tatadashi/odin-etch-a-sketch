@@ -42,6 +42,19 @@ function createGrid (squareCount = 16) {
     }
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * (max + 1));
+}
+
+function getRandomRGB() {
+    const MAX_RGB_VALUE = 255;
+    let redValue = getRandomInt(MAX_RGB_VALUE);
+    let greenValue = getRandomInt(MAX_RGB_VALUE);
+    let blueValue = getRandomInt(MAX_RGB_VALUE);
+
+    return `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+}
+
 createGrid()
 
 const input = document.querySelector(`#inputButton`);
@@ -59,10 +72,11 @@ input.addEventListener(`click`, () => {
     createGrid(squareCount);
 });
 
-//select all square divs and make it so they turn black when hovered on
+//select all square divs and make it so they turn random color (rgb) when hovered on
 const squareDiv = document.querySelectorAll(`.box`);
 squareDiv.forEach((box) => {
     box.addEventListener(`mouseover`, () => {
-        box.style.backgroundColor = `black`;
+        let randomColor = getRandomRGB();
+        box.style.backgroundColor = randomColor;
     });
 });
