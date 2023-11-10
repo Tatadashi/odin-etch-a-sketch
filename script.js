@@ -60,8 +60,11 @@ function changeColorOnHover() {
     let squareDiv = document.querySelectorAll(`.box`);
     squareDiv.forEach((box) => {
         box.addEventListener(`mouseover`, () => {
-            let randomColor = getRandomRGB();
-            box.style.backgroundColor = randomColor;
+            if (!box.classList.contains(`finalColor`)) {
+                let randomColor = getRandomRGB();
+                box.style.backgroundColor = randomColor;
+                box.classList.add(`finalColor`);
+            }
         });
     });
 }
